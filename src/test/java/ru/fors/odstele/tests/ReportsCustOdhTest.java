@@ -1,0 +1,282 @@
+package ru.fors.odstele.tests;
+
+import static org.testng.AssertJUnit.assertEquals;
+import static org.testng.AssertJUnit.assertTrue;
+
+import org.testng.annotations.Test;
+
+import ru.fors.odstele.pages.LoginPage;
+import ru.fors.odstele.pages.MainPage;
+import ru.fors.odstele.pages.ReportsPage;
+import ru.yandex.qatools.allure.annotations.Features;
+import ru.yandex.qatools.allure.annotations.Stories;
+
+/**
+ * @author Alexander Zhaleiko alexander.zhaleyko@fors.ru
+ *         Date: 16.08.15
+ */
+public class ReportsCustOdhTest extends TestBase {
+	
+	// -------------------- Роль заказчик -------------------------------------
+    @Features("Отчеты")
+    @Stories("Роль заказчик, Отчет \"Сводка выхода техники на ОДХ\"")
+    @Test
+    public void reportCarOutTest(){
+    	LoginPage loginPage = new LoginPage(driver);
+    	MainPage mainPage = new MainPage(driver);
+        ReportsPage reportsPage = new ReportsPage(driver);
+        
+        loginPage.userLogin(cust_odh_login, cust_odh_pass);
+        mainPage.userGotoReportsPage();
+        assertEquals("Сводка выхода техники на ОДХ", reportsPage.getBuildReportName());
+        reportsPage.userBuildReport();
+        assertTrue("Отчет \"Сводка выхода техники на ОДХ\" не построен", reportsPage.isReportBuilds());
+        assertTrue(reportsPage.getBuildReportsName().contains("Сводка выхода техники на ОДХ за период"));
+        quit();
+    }
+    
+    @Features("Отчеты")
+    @Stories("Роль заказчик, Отчет \"Техника в работе\"")
+    @Test
+    public void reportCarAtWork(){
+    	LoginPage loginPage = new LoginPage(driver);
+    	MainPage mainPage = new MainPage(driver);
+        ReportsPage reportsPage = new ReportsPage(driver);
+        
+        loginPage.userLogin(cust_odh_login, cust_odh_pass);
+        mainPage.userGotoReportsPage();
+        reportsPage.reportCarAtWorkOpen();
+        assertEquals("Техника в работе", reportsPage.getBuildReportName());
+        reportsPage.userBuildReport();
+        assertTrue("Отчет \"Техника в работе\" не построен", reportsPage.isReportBuilds());
+        assertTrue(reportsPage.getBuildReportsName().contains("Техника в работе на"));
+        quit();
+    }
+    
+    @Features("Отчеты")
+    @Stories("Роль заказчик, Отчет \"Техника в работе за период\"")
+    @Test
+    public void reportCarAtWorkPeriod(){
+    	LoginPage loginPage = new LoginPage(driver);
+    	MainPage mainPage = new MainPage(driver);
+        ReportsPage reportsPage = new ReportsPage(driver);
+        
+        loginPage.userLogin(cust_odh_login, cust_odh_pass);
+        mainPage.userGotoReportsPage();
+        reportsPage.reportCarAtWorkPeriodOpen();
+        assertEquals("Техника в работе за период", reportsPage.getBuildReportName());
+        reportsPage.userBuildReport();
+        assertTrue("Отчет \"Техника в работе за период\" не построен", reportsPage.isReportBuilds());
+        assertTrue(reportsPage.getBuildReportsName().contains("Техника в работе за период с"));
+        quit();        
+        
+    }
+    @Features("Отчеты")
+    @Stories("Роль заказчик, Отчет \"Анализ работы техники\"")
+    @Test
+    public void reportCarAtWorkAnalysis(){
+    	LoginPage loginPage = new LoginPage(driver);
+    	MainPage mainPage = new MainPage(driver);
+        ReportsPage reportsPage = new ReportsPage(driver);
+        
+        loginPage.userLogin(cust_odh_login, cust_odh_pass);
+        mainPage.userGotoReportsPage();
+        reportsPage.reportCarAtWorkAnalysisOpen();
+        assertEquals("Анализ работы техники", reportsPage.getBuildReportName());
+        reportsPage.userBuildReport();
+        assertTrue("Отчет \"Анализ работы техники\" не построен", reportsPage.isReportBuilds());
+        assertTrue(reportsPage.getBuildReportsName().contains("Анализ работы техники за период с"));
+        quit();        
+        
+    }
+    @Features("Отчеты")
+    @Stories("Роль заказчик, Отчет \"Выход техники за период\"")
+    @Test
+    public void reportCarOutPeriod(){
+    	LoginPage loginPage = new LoginPage(driver);
+    	MainPage mainPage = new MainPage(driver);
+        ReportsPage reportsPage = new ReportsPage(driver);
+        
+        loginPage.userLogin(cust_odh_login, cust_odh_pass);
+        mainPage.userGotoReportsPage();
+        reportsPage.reportCarOutPeriodOpen();
+        assertEquals("Выход техники за период", reportsPage.getBuildReportName());
+        reportsPage.userBuildReport();
+        assertTrue("Отчет \"Выход техники за период\" не построен", reportsPage.isReportBuilds());
+        assertTrue(reportsPage.getBuildReportsName().contains("Выход техники за период с"));
+        quit();               
+    }
+    @Features("Отчеты")
+    @Stories("Роль заказчик, Отчет \"Анализ вывоза снега\"")
+    @Test
+    public void reportSnowRemovalAnalysis(){
+    	LoginPage loginPage = new LoginPage(driver);
+    	MainPage mainPage = new MainPage(driver);
+        ReportsPage reportsPage = new ReportsPage(driver);
+        
+        loginPage.userLogin(cust_odh_login, cust_odh_pass);
+        mainPage.userGotoReportsPage();
+        reportsPage.reportSnowRemovalAnalysisOpen();
+        assertEquals("Анализ вывоза снега", reportsPage.getBuildReportName());
+        reportsPage.userBuildReport();
+        assertTrue("Отчет \"Анализ вывоза снега\" не построен", reportsPage.isReportBuilds());
+        assertTrue(reportsPage.getBuildReportsName().contains("Анализ вывоза снега за период с"));
+        quit();
+}
+    @Features("Отчеты")
+    @Stories("Роль заказчик, Отчет \"Детализация вывоза снега по машинам\"")
+    @Test
+    public void reportSnowRemovalDetail(){
+    	LoginPage loginPage = new LoginPage(driver);
+    	MainPage mainPage = new MainPage(driver);
+        ReportsPage reportsPage = new ReportsPage(driver);
+        
+        loginPage.userLogin(cust_odh_login, cust_odh_pass);
+        mainPage.userGotoReportsPage();
+        reportsPage.reportSnowRemovalDetailOpen();
+        assertEquals("Детализация вывоза снега по машинам", reportsPage.getBuildReportName());
+        reportsPage.userBuildReport();
+        assertTrue("Отчет \"Детализация вывоза снега по машинам\" не построен", reportsPage.isReportBuilds());
+        assertTrue(reportsPage.getBuildReportsName().contains("Детализация вывоза снега по машинам за период с"));
+        quit();
+}
+    @Features("Отчеты")
+    @Stories("Роль заказчик, Отчет \"Протокол нарушений\"")
+    @Test
+    public void reportViolation(){
+    	LoginPage loginPage = new LoginPage(driver);
+    	MainPage mainPage = new MainPage(driver);
+        ReportsPage reportsPage = new ReportsPage(driver);
+        
+        loginPage.userLogin(cust_odh_login, cust_odh_pass);
+        mainPage.userGotoReportsPage();
+        reportsPage.reportViolationOpen();
+        assertEquals("Протокол нарушений", reportsPage.getBuildReportName());
+        reportsPage.userBuildReport();
+        assertTrue("Отчет \"Протокол нарушений\" не построен", reportsPage.isReportBuilds());
+        assertTrue(reportsPage.getBuildReportsName().contains("Протокол нарушений за период с"));
+        quit();
+}
+    @Features("Отчеты")
+    @Stories("Роль заказчик, Отчет \"Статистика получения показаний от мобильных устройств\"")
+    @Test
+    public void reportGpsSignalStatsOdh(){
+    	LoginPage loginPage = new LoginPage(driver);
+    	MainPage mainPage = new MainPage(driver);
+        ReportsPage reportsPage = new ReportsPage(driver);
+        
+        loginPage.userLogin(cust_odh_login, cust_odh_pass);
+        mainPage.userGotoReportsPage();
+        reportsPage.reportGpsSignalStatOdhOpen();
+        assertEquals("Статистика получения показаний от мобильных устройств", reportsPage.getBuildReportName());
+        reportsPage.userBuildReport();
+        assertTrue("Отчет \"Статистика получения показаний от мобильных устройств\" не построен", reportsPage.isReportBuilds());
+        assertTrue(reportsPage.getBuildReportsName().contains("Статистика получения показаний от мобильных устройств на"));
+        quit();
+}
+    @Features("Отчеты")
+    @Stories("Роль заказчик, Отчет \"Анализ загрузки снегосплавных пунктов (ССП/МСП)\"")
+    @Test
+    public void reportSspLoading(){
+    	LoginPage loginPage = new LoginPage(driver);
+    	MainPage mainPage = new MainPage(driver);
+        ReportsPage reportsPage = new ReportsPage(driver);
+        
+        loginPage.userLogin(cust_odh_login, cust_odh_pass);
+        mainPage.userGotoReportsPage();
+        reportsPage.sspLoadingReportOpen();
+        assertEquals("Анализ загрузки снегосплавных пунктов (ССП/МСП)", reportsPage.getBuildReportName());
+        reportsPage.userBuildReport();
+        assertTrue("Отчет \"Анализ загрузки снегосплавных пунктов (ССП/МСП)\" не построен", reportsPage.isReportBuilds());
+        assertTrue(reportsPage.getBuildReportsName().contains("Анализ загрузки снегосплавных пунктов (ССП / МСП) на"));
+        quit();
+}
+    @Features("Отчеты")
+    @Stories("Роль заказчик, Отчет \"Техника в работе за период (с детализацией) (сводный)\"")
+    @Test
+    public void reportCarAtWorkPeriodDetail(){
+    	LoginPage loginPage = new LoginPage(driver);
+    	MainPage mainPage = new MainPage(driver);
+        ReportsPage reportsPage = new ReportsPage(driver);
+        
+        loginPage.userLogin(cust_odh_login, cust_odh_pass);
+        mainPage.userGotoReportsPage();
+        reportsPage.reportCarAtWorkPeriodDetailOpen();
+        assertEquals("Техника в работе за период (с детализацией) (сводный)", reportsPage.getBuildReportName());
+        reportsPage.setPeriod("4 часа");
+        reportsPage.userBuildReport();
+        assertTrue("Отчет \"Техника в работе за период (с детализацией) (сводный)\" не построен", reportsPage.isReportBuilds());
+        assertTrue(reportsPage.getBuildReportsName().contains("Отчет «Техника в работе за период (с детализацией) (сводный)»"));
+        quit();
+}
+    
+    @Features("Отчеты")
+    @Stories("Роль заказчик, Отчет \"Перечень ОДХ, на которые не выходила техника\"")
+    @Test
+    public void reportNotVisitedOdh(){
+    	LoginPage loginPage = new LoginPage(driver);
+    	MainPage mainPage = new MainPage(driver);
+        ReportsPage reportsPage = new ReportsPage(driver);
+        
+        loginPage.userLogin(cust_odh_login, cust_odh_pass);
+        mainPage.userGotoReportsPage();
+        reportsPage.notVisitedOdhReportOpen();
+        assertEquals("Перечень ОДХ, на которые не выходила техника", reportsPage.getBuildReportName());
+        reportsPage.userBuildReport();
+        assertTrue("Отчет \"Перечень ОДХ, на которые не выходила техника\" не построен", reportsPage.isReportBuilds());
+        assertTrue(reportsPage.getBuildReportsName().contains("Перечень ОДХ, на которые не выходила техника за период с"));
+        quit();
+}
+    @Features("Отчеты")
+    @Stories("Роль заказчик, Отчет \"Статистика перемещения техники\"")
+    @Test
+    public void reportStatsMove(){
+    	LoginPage loginPage = new LoginPage(driver);
+    	MainPage mainPage = new MainPage(driver);
+        ReportsPage reportsPage = new ReportsPage(driver);
+        
+        loginPage.userLogin(cust_odh_login, cust_odh_pass);
+        mainPage.userGotoReportsPage();
+        reportsPage.reportStatsMoveOpen();
+        assertEquals("Статистика перемещения техники", reportsPage.getBuildReportName());
+        reportsPage.userBuildReport();
+        assertTrue("Отчет \"Статистика перемещения техники\" не построен", reportsPage.isReportBuilds());
+        assertTrue(reportsPage.getBuildReportsName().contains("Статистика перемещения техники за период с"));
+        quit();
+}
+    
+    @Features("Отчеты")
+    @Stories("Роль заказчик, Отчет \"Контроль движения колонн\"")
+    @Test
+    public void reportTrafficLineControl(){
+    	LoginPage loginPage = new LoginPage(driver);
+    	MainPage mainPage = new MainPage(driver);
+        ReportsPage reportsPage = new ReportsPage(driver);
+        
+        loginPage.userLogin(cust_odh_login, cust_odh_pass);
+        mainPage.userGotoReportsPage();
+        reportsPage.reportTrafficLineControlOpen();
+        assertEquals("Контроль движения колонн", reportsPage.getBuildReportName());
+        reportsPage.userBuildReport();
+        assertTrue("Отчет \"Контроль движения колонн\" не построен", reportsPage.isReportBuilds());
+        assertTrue(reportsPage.getBuildReportsName().contains("Контроль движения колонн за период с"));
+        quit();
+}
+    @Features("Отчеты")
+    @Stories("Роль заказчик, Отчет \"Сводка о выполнении регламентных операций, нарушениях и простое техники\"")
+    @Test
+    public void reportReglamentOperationsSummary(){
+    	LoginPage loginPage = new LoginPage(driver);
+    	MainPage mainPage = new MainPage(driver);
+        ReportsPage reportsPage = new ReportsPage(driver);
+        
+        loginPage.userLogin(cust_odh_login, cust_odh_pass);
+        mainPage.userGotoReportsPage();
+        reportsPage.reportReglamentOperationsSummaryOpen();
+        assertEquals("Сводка о выполнении регламентных операций, нарушениях и простое техники", reportsPage.getBuildReportName());
+        reportsPage.userBuildReport();
+        assertTrue("Отчет \"Сводка о выполнении регламентных операций, нарушениях и простое техники\" не построен", reportsPage.isReportBuilds());
+        assertTrue(reportsPage.getBuildReportsName().contains("Сводка о выполнении регламентных операций, нарушениях и простое техники за период с"));
+        quit();
+}
+}
