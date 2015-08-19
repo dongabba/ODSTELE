@@ -23,7 +23,6 @@ public class CheckElementsTools {
 
 			new WebDriverWait(driver, timeout) {
 			}.until(new ExpectedCondition<Boolean>() {
-				@Override
 				public Boolean apply(WebDriver d) {
 					return d.findElement(locator).getText().equals(value);
 				}

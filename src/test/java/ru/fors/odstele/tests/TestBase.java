@@ -1,8 +1,10 @@
 package ru.fors.odstele.tests;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.BeforeMethod;
 
@@ -25,7 +27,8 @@ public class TestBase {
 
 	@BeforeMethod
 	public void init() {
-		driver = new FirefoxDriver();
+		driver = new FirefoxDriver(new FirefoxBinary(new File("C:\\Users\\azhaleyko\\AppData\\Local\\Mozilla Firefox\\firefox.exe")), null);
+		//driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.get(url);
 	}
